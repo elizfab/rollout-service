@@ -1,0 +1,6 @@
+// Ordem importa: tema (tokens) → reset → tipografia → NG-ZORRO → impressão.
+@forward 'theme';
+@forward 'reset';
+@forward 'typography';
+@forward 'ng-zorro';
+@forward 'print';

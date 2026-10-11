@@ -1,0 +1,994 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "rel-0001",
+        "packageId": "pkg-0001",
+        "packageStory": "STORY-4101 · Novo extrato",
+        "applicationId": "app-02",
+        "applicationName": "conta-corrente",
+        "releaseTrainId": "rt-2026-10-12-am",
+        "releaseTrainName": "RT 12/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "in_progress",
+        "gmud": "GMUD7300137",
+        "racf": "RACF001",
+        "progress": 15,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-08T10:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-08T13:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T10:00:00.000Z",
+        "updatedAt": "2026-10-08T13:00:00.000Z"
+      },
+      {
+        "id": "rel-0002",
+        "packageId": "pkg-0002",
+        "packageStory": "STORY-4102 · Fatura parcelada",
+        "applicationId": "app-03",
+        "applicationName": "cartoes-web",
+        "releaseTrainId": "rt-2026-10-12-am",
+        "releaseTrainName": "RT 12/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "in_progress",
+        "gmud": "GMUD7300274",
+        "racf": "RACF002",
+        "progress": 30,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T11:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T14:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T11:00:00.000Z",
+        "updatedAt": "2026-10-08T14:00:00.000Z"
+      },
+      {
+        "id": "rel-0003",
+        "packageId": "pkg-0003",
+        "packageStory": "STORY-4103 · Resgate automático",
+        "applicationId": "app-04",
+        "applicationName": "investimentos",
+        "releaseTrainId": "rt-2026-10-12-am",
+        "releaseTrainName": "RT 12/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "expansion_paused",
+        "gmud": "GMUD7300411",
+        "racf": "RACF003",
+        "progress": 15,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS",
+          "UNCLASS-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T12:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T15:00:00.000Z"
+          },
+          {
+            "status": "expansion_paused",
+            "observation": "Pausada: aumento de erros 5xx no Datadog",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T18:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T12:00:00.000Z",
+        "updatedAt": "2026-10-08T18:00:00.000Z"
+      },
+      {
+        "id": "rel-0004",
+        "packageId": "pkg-0004",
+        "packageStory": "STORY-4104 · Selfie com prova de vida",
+        "applicationId": "app-05",
+        "applicationName": "onboarding-pf",
+        "releaseTrainId": "rt-2026-10-12-am",
+        "releaseTrainName": "RT 12/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "expansion_completed",
+        "gmud": "GMUD7300548",
+        "racf": "RACF004",
+        "progress": 100,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "EVERYONE"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-08T13:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T16:00:00.000Z"
+          },
+          {
+            "status": "expansion_completed",
+            "observation": "Expansão concluída para todas as audiências",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T19:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T13:00:00.000Z",
+        "updatedAt": "2026-10-08T19:00:00.000Z"
+      },
+      {
+        "id": "rel-0005",
+        "packageId": "pkg-0005",
+        "packageStory": "STORY-4105 · Cotação em 2 passos",
+        "applicationId": "app-06",
+        "applicationName": "seguros-mobile",
+        "releaseTrainId": "rt-2026-10-12-am",
+        "releaseTrainName": "RT 12/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "expansion_completed",
+        "gmud": "GMUD7300685",
+        "racf": "RACF005",
+        "progress": 100,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "EVERYONE"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T14:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-08T17:00:00.000Z"
+          },
+          {
+            "status": "expansion_completed",
+            "observation": "Expansão concluída para todas as audiências",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T20:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T14:00:00.000Z",
+        "updatedAt": "2026-10-08T20:00:00.000Z"
+      },
+      {
+        "id": "rel-0006",
+        "packageId": "pkg-0006",
+        "packageStory": "STORY-4106 · Limite por horário",
+        "applicationId": "app-01",
+        "applicationName": "superapp-pix",
+        "releaseTrainId": "rt-2026-10-12-am",
+        "releaseTrainName": "RT 12/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "in_progress",
+        "gmud": "GMUD7300822",
+        "racf": "RACF006",
+        "progress": 60,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-08T15:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T18:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T15:00:00.000Z",
+        "updatedAt": "2026-10-08T18:00:00.000Z"
+      },
+      {
+        "id": "rel-0007",
+        "packageId": "pkg-0007",
+        "packageStory": "STORY-4107 · Tela de favoritos",
+        "applicationId": "app-02",
+        "applicationName": "conta-corrente",
+        "releaseTrainId": "rt-2026-10-12-pm",
+        "releaseTrainName": "RT 12/10 · Tarde",
+        "releaseTrainScheduleId": "sch-tarde",
+        "status": "scheduled",
+        "gmud": "GMUD7300959",
+        "racf": "RACF007",
+        "progress": 0,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T13:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T16:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T16:00:00.000Z",
+        "updatedAt": "2026-10-08T16:00:00.000Z"
+      },
+      {
+        "id": "rel-0008",
+        "packageId": "pkg-0008",
+        "packageStory": "STORY-4108 · Comprovante em PDF",
+        "applicationId": "app-03",
+        "applicationName": "cartoes-web",
+        "releaseTrainId": "rt-2026-10-12-pm",
+        "releaseTrainName": "RT 12/10 · Tarde",
+        "releaseTrainScheduleId": "sch-tarde",
+        "status": "scheduled",
+        "gmud": "GMUD7301096",
+        "racf": "RACF008",
+        "progress": 0,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T13:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-08T17:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T17:00:00.000Z",
+        "updatedAt": "2026-10-08T17:00:00.000Z"
+      },
+      {
+        "id": "rel-0009",
+        "packageId": "pkg-0009",
+        "packageStory": "STORY-4109 · Busca de contatos",
+        "applicationId": "app-04",
+        "applicationName": "investimentos",
+        "releaseTrainId": "rt-2026-10-12-pm",
+        "releaseTrainName": "RT 12/10 · Tarde",
+        "releaseTrainScheduleId": "sch-tarde",
+        "status": "rescheduled",
+        "gmud": "GMUD7301233",
+        "racf": "RACF009",
+        "progress": 0,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T13:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-08T18:00:00.000Z"
+          },
+          {
+            "status": "rescheduled",
+            "observation": "Reagendada: janela conflitante com GMUD",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-08T21:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T18:00:00.000Z",
+        "updatedAt": "2026-10-08T21:00:00.000Z"
+      },
+      {
+        "id": "rel-0010",
+        "packageId": "pkg-0010",
+        "packageStory": "STORY-4110 · Ajuste de acessibilidade",
+        "applicationId": "app-05",
+        "applicationName": "onboarding-pf",
+        "releaseTrainId": "rt-2026-10-12-pm",
+        "releaseTrainName": "RT 12/10 · Tarde",
+        "releaseTrainScheduleId": "sch-tarde",
+        "status": "expansion_paused",
+        "gmud": "GMUD7301370",
+        "racf": "RACF010",
+        "progress": 30,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T13:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T19:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T22:00:00.000Z"
+          },
+          {
+            "status": "expansion_paused",
+            "observation": "Pausada: aumento de erros 5xx no Datadog",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-09T01:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T19:00:00.000Z",
+        "updatedAt": "2026-10-09T01:00:00.000Z"
+      },
+      {
+        "id": "rel-0011",
+        "packageId": "pkg-0011",
+        "packageStory": "STORY-4111 · Banner de ofertas",
+        "applicationId": "app-06",
+        "applicationName": "seguros-mobile",
+        "releaseTrainId": "rt-2026-10-12-pm",
+        "releaseTrainName": "RT 12/10 · Tarde",
+        "releaseTrainScheduleId": "sch-tarde",
+        "status": "canceled",
+        "gmud": "GMUD7301507",
+        "racf": "RACF011",
+        "progress": 0,
+        "releaseDate": "2026-10-12",
+        "scheduledAt": "2026-10-12T13:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-08T20:00:00.000Z"
+          },
+          {
+            "status": "canceled",
+            "observation": "Cancelada a pedido do RM",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-08T23:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T20:00:00.000Z",
+        "updatedAt": "2026-10-08T23:00:00.000Z"
+      },
+      {
+        "id": "rel-0012",
+        "packageId": "pkg-0012",
+        "packageStory": "STORY-4112 · Login biométrico",
+        "applicationId": "app-01",
+        "applicationName": "superapp-pix",
+        "releaseTrainId": "rt-2026-10-13-am",
+        "releaseTrainName": "RT 13/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7301644",
+        "racf": "RACF012",
+        "progress": 0,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-08T21:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T21:00:00.000Z",
+        "updatedAt": "2026-10-08T21:00:00.000Z"
+      },
+      {
+        "id": "rel-0013",
+        "packageId": "pkg-0013",
+        "packageStory": "STORY-4113 · Notificação de compra",
+        "applicationId": "app-02",
+        "applicationName": "conta-corrente",
+        "releaseTrainId": "rt-2026-10-13-am",
+        "releaseTrainName": "RT 13/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7301781",
+        "racf": "RACF013",
+        "progress": 0,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS",
+          "UNCLASS-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-08T22:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T22:00:00.000Z",
+        "updatedAt": "2026-10-08T22:00:00.000Z"
+      },
+      {
+        "id": "rel-0014",
+        "packageId": "pkg-0014",
+        "packageStory": "STORY-4114 · Pagamento por aproximação",
+        "applicationId": "app-03",
+        "applicationName": "cartoes-web",
+        "releaseTrainId": "rt-2026-10-13-am",
+        "releaseTrainName": "RT 13/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7301918",
+        "racf": "RACF014",
+        "progress": 0,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-08T23:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-08T23:00:00.000Z",
+        "updatedAt": "2026-10-08T23:00:00.000Z"
+      },
+      {
+        "id": "rel-0015",
+        "packageId": "pkg-0015",
+        "packageStory": "STORY-4115 · PIX agendado recorrente",
+        "applicationId": "app-04",
+        "applicationName": "investimentos",
+        "releaseTrainId": "rt-2026-10-13-am",
+        "releaseTrainName": "RT 13/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7302055",
+        "racf": "RACF015",
+        "progress": 0,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-09T00:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T00:00:00.000Z",
+        "updatedAt": "2026-10-09T00:00:00.000Z"
+      },
+      {
+        "id": "rel-0016",
+        "packageId": "pkg-0016",
+        "packageStory": "STORY-4116 · Novo extrato",
+        "applicationId": "app-05",
+        "applicationName": "onboarding-pf",
+        "releaseTrainId": "rt-2026-10-13-am",
+        "releaseTrainName": "RT 13/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "rescheduled",
+        "gmud": "GMUD7302192",
+        "racf": "RACF016",
+        "progress": 0,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-09T01:00:00.000Z"
+          },
+          {
+            "status": "rescheduled",
+            "observation": "Reagendada: janela conflitante com GMUD",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T04:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T01:00:00.000Z",
+        "updatedAt": "2026-10-09T04:00:00.000Z"
+      },
+      {
+        "id": "rel-0017",
+        "packageId": "pkg-0017",
+        "packageStory": "STORY-4117 · Fatura parcelada",
+        "applicationId": "app-06",
+        "applicationName": "seguros-mobile",
+        "releaseTrainId": "rt-2026-10-14-am",
+        "releaseTrainName": "RT 14/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7302329",
+        "racf": "RACF017",
+        "progress": 0,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-09T02:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T02:00:00.000Z",
+        "updatedAt": "2026-10-09T02:00:00.000Z"
+      },
+      {
+        "id": "rel-0018",
+        "packageId": "pkg-0018",
+        "packageStory": "STORY-4118 · Resgate automático",
+        "applicationId": "app-01",
+        "applicationName": "superapp-pix",
+        "releaseTrainId": "rt-2026-10-14-am",
+        "releaseTrainName": "RT 14/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7302466",
+        "racf": "RACF018",
+        "progress": 0,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T03:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T03:00:00.000Z",
+        "updatedAt": "2026-10-09T03:00:00.000Z"
+      },
+      {
+        "id": "rel-0019",
+        "packageId": "pkg-0019",
+        "packageStory": "STORY-4119 · Selfie com prova de vida",
+        "applicationId": "app-02",
+        "applicationName": "conta-corrente",
+        "releaseTrainId": "rt-2026-10-14-am",
+        "releaseTrainName": "RT 14/10 · Manhã",
+        "releaseTrainScheduleId": "sch-manha",
+        "status": "scheduled",
+        "gmud": "GMUD7302603",
+        "racf": "RACF019",
+        "progress": 0,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T06:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-09T04:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T04:00:00.000Z",
+        "updatedAt": "2026-10-09T04:00:00.000Z"
+      },
+      {
+        "id": "rel-0020",
+        "packageId": "pkg-0020",
+        "packageStory": "STORY-4120 · Cotação em 2 passos",
+        "applicationId": "app-03",
+        "applicationName": "cartoes-web",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "expansion_completed",
+        "gmud": "GMUD7302740",
+        "racf": "RACF020",
+        "progress": 100,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T14:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "EVERYONE"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-09T05:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-09T08:00:00.000Z"
+          },
+          {
+            "status": "expansion_completed",
+            "observation": "Expansão concluída para todas as audiências",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T11:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T05:00:00.000Z",
+        "updatedAt": "2026-10-09T11:00:00.000Z"
+      },
+      {
+        "id": "rel-0021",
+        "packageId": "pkg-0021",
+        "packageStory": "STORY-4121 · Limite por horário",
+        "applicationId": "app-04",
+        "applicationName": "investimentos",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "rollback",
+        "gmud": "GMUD7302877",
+        "racf": "RACF021",
+        "progress": 60,
+        "releaseDate": "2026-10-13",
+        "scheduledAt": "2026-10-13T19:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T06:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T09:00:00.000Z"
+          },
+          {
+            "status": "expansion_paused",
+            "observation": "Pausada: aumento de erros 5xx no Datadog",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T12:00:00.000Z"
+          },
+          {
+            "status": "rollback",
+            "observation": "Rollback: regressão no fluxo de login",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T15:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T06:00:00.000Z",
+        "updatedAt": "2026-10-09T15:00:00.000Z"
+      },
+      {
+        "id": "rel-0022",
+        "packageId": "pkg-0022",
+        "packageStory": "STORY-4122 · Tela de favoritos",
+        "applicationId": "app-05",
+        "applicationName": "onboarding-pf",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "stepback",
+        "gmud": "GMUD7303014",
+        "racf": "RACF022",
+        "progress": 45,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T00:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-09T07:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T10:00:00.000Z"
+          },
+          {
+            "status": "expansion_completed",
+            "observation": "Expansão concluída para todas as audiências",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-09T13:00:00.000Z"
+          },
+          {
+            "status": "stepback",
+            "observation": "Stepback: crash rate acima do limite em PERSON-IOS",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T16:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T07:00:00.000Z",
+        "updatedAt": "2026-10-09T16:00:00.000Z"
+      },
+      {
+        "id": "rel-0023",
+        "packageId": "pkg-0023",
+        "packageStory": "STORY-4123 · Comprovante em PDF",
+        "applicationId": "app-06",
+        "applicationName": "seguros-mobile",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "in_progress",
+        "gmud": "GMUD7303151",
+        "racf": "RACF023",
+        "progress": 30,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T05:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "UNCLASS-IOS",
+          "UNCLASS-ANDROID"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-09T08:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T11:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T08:00:00.000Z",
+        "updatedAt": "2026-10-09T11:00:00.000Z"
+      },
+      {
+        "id": "rel-0024",
+        "packageId": "pkg-0024",
+        "packageStory": "STORY-4124 · Busca de contatos",
+        "applicationId": "app-01",
+        "applicationName": "superapp-pix",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "expansion_completed",
+        "gmud": "GMUD7303288",
+        "racf": "RACF024",
+        "progress": 100,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T10:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS",
+          "VAREJO-ANDROID",
+          "EVERYONE"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T09:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "ana.souza",
+            "createdAt": "2026-10-09T12:00:00.000Z"
+          },
+          {
+            "status": "expansion_completed",
+            "observation": "Expansão concluída para todas as audiências",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T15:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T09:00:00.000Z",
+        "updatedAt": "2026-10-09T15:00:00.000Z"
+      },
+      {
+        "id": "rel-0025",
+        "packageId": "pkg-0025",
+        "packageStory": "STORY-4125 · Ajuste de acessibilidade",
+        "applicationId": "app-02",
+        "applicationName": "conta-corrente",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "canceled",
+        "gmud": "GMUD7303425",
+        "racf": "RACF025",
+        "progress": 0,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T15:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T10:00:00.000Z"
+          },
+          {
+            "status": "canceled",
+            "observation": "Cancelada a pedido do RM",
+            "changedBy": "dev.local",
+            "createdAt": "2026-10-09T13:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T10:00:00.000Z",
+        "updatedAt": "2026-10-09T13:00:00.000Z"
+      },
+      {
+        "id": "rel-0026",
+        "packageId": "pkg-0026",
+        "packageStory": "STORY-4126 · Banner de ofertas",
+        "applicationId": "app-03",
+        "applicationName": "cartoes-web",
+        "releaseTrainId": null,
+        "releaseTrainName": null,
+        "releaseTrainScheduleId": null,
+        "status": "expansion_paused",
+        "gmud": "GMUD7303562",
+        "racf": "RACF026",
+        "progress": 45,
+        "releaseDate": "2026-10-14",
+        "scheduledAt": "2026-10-14T20:00:00-03:00",
+        "audiences": [
+          "ITUBER",
+          "VAREJO-IOS"
+        ],
+        "statusHistory": [
+          {
+            "status": "scheduled",
+            "observation": "Release agendada pela esteira",
+            "changedBy": "bruna.lima",
+            "createdAt": "2026-10-09T11:00:00.000Z"
+          },
+          {
+            "status": "in_progress",
+            "observation": "Expansão iniciada",
+            "changedBy": "elizabete.fabri",
+            "createdAt": "2026-10-09T14:00:00.000Z"
+          },
+          {
+            "status": "expansion_paused",
+            "observation": "Pausada: aumento de erros 5xx no Datadog",
+            "changedBy": "camila.reis",
+            "createdAt": "2026-10-09T17:00:00.000Z"
+          }
+        ],
+        "createdAt": "2026-10-09T11:00:00.000Z",
+        "updatedAt": "2026-10-09T17:00:00.000Z"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 26,
+      "total": 26
+    }
+  }
+}

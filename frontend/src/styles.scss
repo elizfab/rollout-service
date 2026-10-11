@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+// Estilos globais do Rollout.
+// O CSS do NG-ZORRO (versão "variable") é carregado antes, pelo angular.json.
+// Todo o tema está em src/app/shared/styles — leia docs/tema.md antes de mudar cores.
+@use 'app/shared/styles/base';

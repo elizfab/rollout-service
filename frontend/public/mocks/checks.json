@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "service": "rollout-service (mock local)",
+  "version": "0.0.0-mock",
+  "checks": [
+    {
+      "name": "api",
+      "status": "ok",
+      "latencyMs": 12
+    },
+    {
+      "name": "mongodb",
+      "status": "ok",
+      "latencyMs": 4
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+// Ponto único de entrada dos abstracts.
+// Nos componentes: `@use 'abstracts' as *;` (o caminho está em stylePreprocessorOptions).
+@forward 'palette';
+@forward 'mixins';

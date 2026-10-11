@@ -1,20 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <title>Estudos | Rollout Service</title>
+    <title>Rollout Service</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Permissions-Policy" content="unload=()" />
-    <link rel="icon" type="image/x-icon" href="logo.png" />
-    <link rel="apple-touch-icon" href="logo.png" />
+    <meta name="description" content="Rollout Service — gestão de releases, release trains e rollout gradual." />
+    <meta name="theme-color" content="#4c5fd5" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="logo.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!--
+      Aplica o tema salvo ANTES do Angular carregar, para não piscar o tema errado.
+      Precisa usar a mesma chave do ThemeService (rollout.theme).
+    -->
+    <script>
+      (function () {
+        try {
+          var saved = JSON.parse(localStorage.getItem('rollout.theme') || 'null');
+          var theme = saved === 'dark' || saved === 'light'
+            ? saved
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <app-root></app-root>
