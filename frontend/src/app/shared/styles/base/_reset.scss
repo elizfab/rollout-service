@@ -1,0 +1,61 @@
+// Reset mínimo e moderno. O NG-ZORRO já traz o normalize do Ant Design;
+// aqui ficam só os ajustes que dependem dos tokens do tema.
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--rs-bg);
+  color: var(--rs-text);
+  font-family: var(--rs-font-sans);
+  font-size: var(--rs-font-size-md);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color var(--rs-transition),
+    color var(--rs-transition);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--rs-color-link);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--rs-color-focus);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--rs-color-accent-soft);
+  color: var(--rs-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

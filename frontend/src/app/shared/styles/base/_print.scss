@@ -1,0 +1,40 @@
+// Layout de impressão usado pelo PrintLayoutService.
+// Ao imprimir, o app força o tema claro e esconde a navegação.
+
+@media print {
+  :root,
+  :root[data-theme='dark'] {
+    color-scheme: light;
+    --rs-bg: #ffffff;
+    --rs-surface: #ffffff;
+    --rs-surface-sunken: #f4f3f9;
+    --rs-text: #1d1b33;
+    --rs-text-muted: #5f5c7a;
+    --rs-border: #d9d6e6;
+  }
+
+  .rs-no-print,
+  .rs-shell__sidebar,
+  .rs-shell__header,
+  .ant-pagination,
+  .ant-btn {
+    display: none !important;
+  }
+
+  .rs-shell__content {
+    padding: 0 !important;
+  }
+
+  .ant-collapse-content {
+    display: block !important;
+    height: auto !important;
+  }
+
+  body.rs-printing .rs-print-header {
+    display: block !important;
+  }
+}
+
+.rs-print-header {
+  display: none;
+}

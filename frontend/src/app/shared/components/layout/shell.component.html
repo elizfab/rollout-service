@@ -1,0 +1,71 @@
+<div class="rs-shell" [class.rs-shell--collapsed]="collapsed()">
+  <a class="rs-skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <aside class="rs-shell__sidebar" aria-label="Navegação principal">
+    <div class="rs-shell__brand">
+      <a routerLink="/" aria-label="Rollout Service — início">
+        <rs-logo [compact]="collapsed()" />
+      </a>
+    </div>
+
+    <nav class="rs-shell__nav">
+      @for (group of groups; track group.title) {
+        <div class="rs-nav-group">
+          @if (!collapsed()) {
+            <span class="rs-nav-group__title">{{ group.title }}</span>
+          }
+          <ul>
+            @for (item of group.items; track item.path) {
+              <li>
+                <a
+                  class="rs-nav-link"
+                  [routerLink]="['/', item.path]"
+                  routerLinkActive="rs-nav-link--active"
+                  [attr.data-testid]="'nav-' + item.path"
+                  nz-tooltip
+                  [nzTooltipTitle]="collapsed() ? item.label : null"
+                  nzTooltipPlacement="right"
+                >
+                  <span nz-icon [nzType]="item.icon" aria-hidden="true"></span>
+                  @if (!collapsed()) {
+                    <span>{{ item.label }}</span>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </nav>
+
+    <button
+      nz-button
+      nzType="text"
+      class="rs-shell__collapse"
+      (click)="toggleSidebar()"
+      [attr.aria-label]="collapsed() ? 'Expandir menu' : 'Recolher menu'"
+      [attr.aria-expanded]="!collapsed()"
+    >
+      <span nz-icon [nzType]="collapsed() ? 'menu-unfold' : 'menu-fold'"></span>
+    </button>
+  </aside>
+
+  <div class="rs-shell__main">
+    <header class="rs-shell__header">
+      <div class="rs-shell__crumb">
+        <span class="rs-text-muted">{{ meta().section ?? 'rollout' }}</span>
+        <span aria-hidden="true">/</span>
+        <strong>{{ meta().title ?? 'Rollout Service' }}</strong>
+      </div>
+      <div class="rs-shell__tools">
+        <rs-data-source-badge />
+        <rs-theme-toggle />
+        <nz-avatar nzText="DEV" nzSize="small" class="rs-shell__avatar" aria-label="Usuária de desenvolvimento" />
+      </div>
+    </header>
+
+    <main id="conteudo" class="rs-shell__content" tabindex="-1">
+      <router-outlet />
+    </main>
+  </div>
+</div>

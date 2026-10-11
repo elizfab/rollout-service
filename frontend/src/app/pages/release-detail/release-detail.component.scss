@@ -1,0 +1,100 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.rs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--rs-space-3);
+  color: var(--rs-text-muted);
+  font-size: var(--rs-font-size-sm);
+}
+
+.rs-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 2.2fr;
+  gap: var(--rs-space-4);
+  margin-bottom: var(--rs-space-4);
+
+  @include down(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rs-card {
+  @include surface(1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rs-space-3);
+  padding: var(--rs-space-4);
+
+  &--status {
+    background:
+      radial-gradient(circle at 100% 0%, var(--rs-color-accent-soft), transparent 55%),
+      var(--rs-surface);
+  }
+}
+
+.rs-terminal {
+  padding: var(--rs-space-2) var(--rs-space-3);
+  border-radius: var(--rs-radius-md);
+  background: var(--rs-color-rose-soft);
+  color: var(--rs-text);
+  font-size: var(--rs-font-size-sm);
+}
+
+.rs-history {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rs-space-2);
+  margin-bottom: 4px;
+}
+
+.rs-timeline-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dot);
+  box-shadow: 0 0 0 3px var(--rs-surface);
+}
+
+.rs-rules {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rs-border);
+    text-align: left;
+  }
+
+  th {
+    color: var(--rs-text-muted);
+    font-size: var(--rs-font-size-xs);
+    text-transform: uppercase;
+  }
+
+  &__source {
+    margin-top: var(--rs-space-3);
+    font-size: var(--rs-font-size-xs);
+  }
+}
+
+.rs-yes {
+  color: var(--rs-color-success);
+  font-weight: 600;
+}
+
+.rs-no {
+  color: var(--rs-text-subtle);
+}
+
+.rs-mono {
+  @include mono;
+}

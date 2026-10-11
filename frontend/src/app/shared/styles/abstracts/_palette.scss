@@ -1,0 +1,83 @@
+// =============================================================================
+// Paleta bruta do Rollout — azul + laranja com tons femininos
+// -----------------------------------------------------------------------------
+// Este arquivo guarda SÓ as cores "cruas" (a tinta no pote). Nenhum componente
+// usa estas variáveis diretamente: eles usam os tokens semânticos definidos em
+// `base/_theme.scss` (ex.: `var(--rs-color-primary)`), que escolhem a cor certa
+// para o tema claro ou escuro.
+//
+// Por que separar? É como uma paleta de pintora: aqui ficam as tintas; o tema
+// decide qual tinta vai em cada parte do quadro. Trocar o tom de azul da marca
+// muda um valor aqui e o sistema inteiro acompanha.
+//
+// Direção visual:
+//   • Azul pervinca (periwinkle) — a cor da marca: confiável, técnica, suave.
+//   • Laranja pêssego/coral       — destaque: o que está "em movimento" (rollout).
+//   • Rosa e lilás                — tons femininos de apoio para estados e acentos.
+//   • Neutros levemente violeta   — fundo e texto, nunca cinza "frio" puro.
+// =============================================================================
+
+// Azul pervinca (marca) ------------------------------------------------------
+$blue-50: #f3f4fe;
+$blue-100: #e6e9fc;
+$blue-200: #cbd1f8;
+$blue-300: #a9b3f3;
+$blue-400: #8c99f0; // primária no tema escuro
+$blue-500: #6474e5;
+$blue-600: #4c5fd5; // primária no tema claro
+$blue-700: #3d4dbb;
+$blue-800: #323f97;
+
+// Laranja pêssego / coral (destaque) ------------------------------------------
+$orange-50: #fff6f1;
+$orange-100: #ffede4;
+$orange-200: #ffd6c2;
+$orange-300: #ffb38f; // texto de destaque no tema escuro
+$orange-400: #ff9a6c;
+$orange-500: #ff8552; // destaque (fundos, ícones, barras)
+$orange-600: #e8693a;
+$orange-700: #b84e1f; // texto de destaque no tema claro (contraste AA)
+
+// Rosa (feminino, apoio) ------------------------------------------------------
+$rose-100: #fce7f0;
+$rose-300: #f3a9c6;
+$rose-500: #e26d9c;
+$rose-700: #9e2f5c;
+
+// Lilás (feminino, apoio) -----------------------------------------------------
+$lilac-100: #eee8fd;
+$lilac-300: #c6b5f5;
+$lilac-500: #9a7fe6;
+$lilac-700: #5b3fb0;
+
+// Semânticas de estado ---------------------------------------------------------
+$mint-100: #ddf5ec;
+$mint-300: #8fdcbf;
+$mint-500: #3fb68b;
+$mint-700: #1f6e52;
+
+$amber-100: #fdf1d8;
+$amber-300: #f4cf85;
+$amber-500: #e8a93b;
+$amber-700: #8a5a07;
+
+$red-100: #fce3e6;
+$red-300: #f2a1ad;
+$red-500: #e5566b;
+$red-700: #a1243a;
+
+// Neutros (levemente violeta) -------------------------------------------------
+$ink-50: #f8f7fc;
+$ink-100: #f1eff8;
+$ink-200: #e7e4f0;
+$ink-300: #cfcbe0;
+$ink-400: #b5b2cf;
+$ink-500: #8a88a3;
+$ink-600: #5f5c7a;
+$ink-700: #3a3858;
+$ink-800: #2a2946;
+$ink-850: #201f38;
+$ink-900: #17162b;
+$ink-950: #1d1b33;
+
+$white: #ffffff;

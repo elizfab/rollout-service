@@ -1,0 +1,232 @@
+// =============================================================================
+// TEMA PRINCIPAL — Rollout (claro e escuro)
+// -----------------------------------------------------------------------------
+// Fonte única de verdade das cores da interface. Tudo o que é visual
+// (componentes próprios e overrides do NG-ZORRO) lê os tokens `--rs-*` daqui.
+//
+// Como o tema é escolhido:
+//   1. `ThemeService` grava `data-theme="light" | "dark"` no <html> e salva a
+//      escolha no localStorage (`rollout.theme`).
+//   2. Um script inline no `index.html` aplica o tema salvo ANTES do Angular
+//      carregar, para não piscar o tema errado.
+//   3. Sem escolha salva, vale o tema do sistema operacional
+//      (`prefers-color-scheme`).
+//
+// Identidade: azul pervinca (marca) + laranja pêssego (destaque), com rosa e
+// lilás como tons femininos de apoio. Fundos e textos são neutros levemente
+// violeta, para a interface ficar acolhedora sem perder o ar técnico.
+//
+// Regras de uso:
+//   • Componentes usam SÓ tokens semânticos (`--rs-color-primary`), nunca a
+//     paleta bruta (`$blue-600`) nem hex soltos.
+//   • Estado de release sempre com cor + texto (+ ponto), nunca só cor.
+//   • Texto em laranja usa `--rs-color-accent-text` (contraste AA garantido).
+// =============================================================================
+
+@use 'sass:list';
+@use '../abstracts/palette' as *;
+
+/// Gera --rs-status-<nome>-bg / -fg / -dot a partir de um mapa.
+@mixin status-tokens($map) {
+  @each $name, $colors in $map {
+    --rs-status-#{$name}-bg: #{list.nth($colors, 1)};
+    --rs-status-#{$name}-fg: #{list.nth($colors, 2)};
+    --rs-status-#{$name}-dot: #{list.nth($colors, 3)};
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Tokens que não mudam entre temas
+// ----------------------------------------------------------------------------
+@mixin theme-constants {
+  --rs-font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --rs-font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace;
+
+  --rs-font-size-xs: 0.75rem; // 12px
+  --rs-font-size-sm: 0.8125rem; // 13px
+  --rs-font-size-md: 0.875rem; // 14px (base de interfaces densas de dev)
+  --rs-font-size-lg: 1rem; // 16px
+  --rs-font-size-xl: 1.25rem; // 20px
+  --rs-font-size-2xl: 1.625rem; // 26px
+
+  --rs-space-1: 4px;
+  --rs-space-2: 8px;
+  --rs-space-3: 12px;
+  --rs-space-4: 16px;
+  --rs-space-5: 24px;
+  --rs-space-6: 32px;
+  --rs-space-7: 48px;
+
+  // Cantos arredondados generosos: parte da linguagem "feminina e acolhedora".
+  --rs-radius-sm: 6px;
+  --rs-radius-md: 10px;
+  --rs-radius-lg: 14px;
+  --rs-radius-pill: 999px;
+
+  --rs-sidebar-width: 248px;
+  --rs-sidebar-width-collapsed: 72px;
+  --rs-header-height: 60px;
+
+  --rs-transition: 160ms cubic-bezier(0.2, 0, 0, 1);
+
+  // Gradiente da marca (logo, barra de progresso, detalhes de destaque).
+  --rs-gradient-brand: linear-gradient(135deg, #{$blue-500} 0%, #{$lilac-500} 55%, #{$orange-500} 100%);
+}
+
+// ----------------------------------------------------------------------------
+// Tema CLARO
+// ----------------------------------------------------------------------------
+@mixin theme-light {
+  color-scheme: light;
+
+  // Superfícies
+  --rs-bg: #{$ink-50};
+  --rs-surface: #{$white};
+  --rs-surface-elevated: #{$white};
+  --rs-surface-sunken: #{$ink-100};
+  --rs-surface-hover: #{$ink-100};
+  --rs-sidebar-bg: #{$white};
+  --rs-border: #{$ink-200};
+  --rs-border-strong: #{$ink-300};
+
+  // Texto
+  --rs-text: #{$ink-950};
+  --rs-text-muted: #{$ink-600};
+  --rs-text-subtle: #{$ink-500};
+  --rs-text-on-primary: #{$white};
+  --rs-text-on-accent: #3a1605;
+
+  // Marca
+  --rs-color-primary: #{$blue-600};
+  --rs-color-primary-hover: #{$blue-700};
+  --rs-color-primary-soft: #{$blue-100};
+  --rs-color-primary-text: #{$blue-700};
+  --rs-color-accent: #{$orange-500};
+  --rs-color-accent-hover: #{$orange-600};
+  --rs-color-accent-soft: #{$orange-100};
+  --rs-color-accent-text: #{$orange-700};
+  --rs-color-rose: #{$rose-500};
+  --rs-color-rose-soft: #{$rose-100};
+  --rs-color-lilac: #{$lilac-500};
+  --rs-color-lilac-soft: #{$lilac-100};
+  --rs-color-link: #{$blue-600};
+  --rs-color-focus: #{$blue-500};
+
+  // Feedback
+  --rs-color-success: #{$mint-500};
+  --rs-color-warning: #{$amber-500};
+  --rs-color-danger: #{$red-500};
+  --rs-color-info: #{$blue-500};
+
+  // Sombras suaves com tom violeta (não preto puro)
+  --rs-shadow-1: 0 1px 2px rgba(29, 27, 51, 0.06), 0 1px 3px rgba(29, 27, 51, 0.05);
+  --rs-shadow-2: 0 8px 24px rgba(76, 95, 213, 0.1), 0 2px 6px rgba(29, 27, 51, 0.06);
+
+  // Código / JSON
+  --rs-code-bg: #{$ink-100};
+  --rs-code-text: #{$ink-950};
+
+  // Estados de release: fundo suave + texto escuro da mesma família + ponto
+  @include status-tokens(
+    (
+      scheduled: ($blue-100, $blue-800, $blue-500),
+      rescheduled: ($lilac-100, $lilac-700, $lilac-500),
+      in-progress: ($orange-100, $orange-700, $orange-500),
+      expansion-paused: ($amber-100, $amber-700, $amber-500),
+      expansion-completed: ($mint-100, $mint-700, $mint-500),
+      rollback: ($red-100, $red-700, $red-500),
+      stepback: ($rose-100, $rose-700, $rose-500),
+      canceled: ($ink-100, $ink-600, $ink-500),
+    )
+  );
+}
+
+// ----------------------------------------------------------------------------
+// Tema ESCURO
+// ----------------------------------------------------------------------------
+@mixin theme-dark {
+  color-scheme: dark;
+
+  // Superfícies: azul-noite com fundo violeta, não preto puro
+  --rs-bg: #{$ink-900};
+  --rs-surface: #{$ink-850};
+  --rs-surface-elevated: #{$ink-800};
+  --rs-surface-sunken: #121124;
+  --rs-surface-hover: #2f2d4d;
+  --rs-sidebar-bg: #1b1a31;
+  --rs-border: #{$ink-700};
+  --rs-border-strong: #4a4870;
+
+  // Texto
+  --rs-text: #f3f1fa;
+  --rs-text-muted: #{$ink-400};
+  --rs-text-subtle: #8f8cab;
+  --rs-text-on-primary: #10102a;
+  --rs-text-on-accent: #2a1003;
+
+  // Marca: versões mais claras para manter contraste no escuro
+  --rs-color-primary: #{$blue-400};
+  --rs-color-primary-hover: #{$blue-300};
+  --rs-color-primary-soft: rgba(140, 153, 240, 0.16);
+  --rs-color-primary-text: #{$blue-300};
+  --rs-color-accent: #{$orange-500};
+  --rs-color-accent-hover: #{$orange-400};
+  --rs-color-accent-soft: rgba(255, 133, 82, 0.16);
+  --rs-color-accent-text: #{$orange-300};
+  --rs-color-rose: #{$rose-300};
+  --rs-color-rose-soft: rgba(226, 109, 156, 0.18);
+  --rs-color-lilac: #{$lilac-300};
+  --rs-color-lilac-soft: rgba(154, 127, 230, 0.18);
+  --rs-color-link: #{$blue-300};
+  --rs-color-focus: #{$blue-300};
+
+  // Feedback
+  --rs-color-success: #{$mint-300};
+  --rs-color-warning: #{$amber-300};
+  --rs-color-danger: #{$red-300};
+  --rs-color-info: #{$blue-300};
+
+  --rs-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --rs-shadow-2: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+  --rs-code-bg: #121124;
+  --rs-code-text: #e7e4f0;
+
+  // Estados: fundo translúcido + texto claro da mesma família + ponto
+  @include status-tokens(
+    (
+      scheduled: (rgba(140, 153, 240, 0.18), $blue-300, $blue-400),
+      rescheduled: (rgba(154, 127, 230, 0.2), $lilac-300, $lilac-300),
+      in-progress: (rgba(255, 133, 82, 0.18), $orange-300, $orange-400),
+      expansion-paused: (rgba(232, 169, 59, 0.18), $amber-300, $amber-300),
+      expansion-completed: (rgba(63, 182, 139, 0.18), $mint-300, $mint-300),
+      rollback: (rgba(229, 86, 107, 0.2), $red-300, $red-300),
+      stepback: (rgba(226, 109, 156, 0.2), $rose-300, $rose-300),
+      canceled: (rgba(181, 178, 207, 0.14), $ink-400, $ink-500),
+    )
+  );
+}
+
+// ----------------------------------------------------------------------------
+// Aplicação dos temas
+// ----------------------------------------------------------------------------
+:root {
+  @include theme-constants;
+  @include theme-light;
+}
+
+// Sem escolha explícita: segue o sistema operacional.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include theme-dark;
+  }
+}
+
+// Escolha explícita (ThemeService / script do index.html).
+:root[data-theme='light'] {
+  @include theme-light;
+}
+
+:root[data-theme='dark'] {
+  @include theme-dark;
+}

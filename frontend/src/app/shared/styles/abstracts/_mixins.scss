@@ -1,0 +1,67 @@
+@use 'sass:map';
+
+// =============================================================================
+// Mixins reutilizáveis. Não geram CSS sozinhos: só quando são incluídos.
+// =============================================================================
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1600px,
+);
+
+/// Media query "a partir de" um breakpoint (mobile first).
+/// @example scss  @include up(md) { … }
+@mixin up($name) {
+  @media (min-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}
+
+/// Media query "até" um breakpoint.
+@mixin down($name) {
+  @media (max-width: (map.get($breakpoints, $name) - 0.02px)) {
+    @content;
+  }
+}
+
+/// Anel de foco visível e consistente nos dois temas (acessibilidade).
+@mixin focus-ring {
+  outline: 2px solid var(--rs-color-focus);
+  outline-offset: 2px;
+}
+
+/// Superfície de card: fundo, borda e sombra vindos do tema.
+@mixin surface($level: 1) {
+  background: if($level == 2, var(--rs-surface-elevated), var(--rs-surface));
+  border: 1px solid var(--rs-border);
+  border-radius: var(--rs-radius-lg);
+  box-shadow: var(--rs-shadow-#{$level});
+}
+
+/// Corta texto longo com reticências.
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Texto técnico (IDs, GMUD, hashes, JSON).
+@mixin mono {
+  font-family: var(--rs-font-mono);
+  font-feature-settings: 'zero' 1;
+}
+
+/// Some só da tela, continua para leitores de tela.
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}

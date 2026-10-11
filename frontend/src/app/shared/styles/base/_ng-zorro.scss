@@ -1,0 +1,500 @@
+// =============================================================================
+// Ponte entre o tema Rollout e o NG-ZORRO
+// -----------------------------------------------------------------------------
+// O NG-ZORRO é carregado pelo CSS "variable" (ng-zorro-antd.variable.min.css),
+// que lê a cor primária de variáveis `--ant-*`. Aqui ligamos essas variáveis
+// aos nossos tokens `--rs-*` e ajustamos as superfícies dos componentes usados
+// no projeto, para que funcionem nos temas claro e escuro.
+//
+// Regra: não sobrescreva o NG-ZORRO dentro de componentes. Se um ajuste vale
+// para o app inteiro, ele mora aqui.
+// =============================================================================
+
+:root {
+  --ant-primary-color: var(--rs-color-primary);
+  --ant-primary-color-hover: var(--rs-color-primary-hover);
+  --ant-primary-color-active: var(--rs-color-primary-hover);
+  --ant-primary-color-outline: var(--rs-color-primary-soft);
+  --ant-primary-1: var(--rs-color-primary-soft);
+  --ant-primary-2: var(--rs-color-primary-soft);
+  --ant-primary-5: var(--rs-color-primary-hover);
+  --ant-primary-6: var(--rs-color-primary);
+  --ant-primary-7: var(--rs-color-primary-hover);
+  --ant-success-color: var(--rs-color-success);
+  --ant-warning-color: var(--rs-color-warning);
+  --ant-error-color: var(--rs-color-danger);
+  --ant-info-color: var(--rs-color-info);
+}
+
+body {
+  font-family: var(--rs-font-sans);
+  color: var(--rs-text);
+}
+
+// Texto e títulos base do Ant
+.ant-typography,
+h1.ant-typography,
+h2.ant-typography,
+h3.ant-typography {
+  color: var(--rs-text);
+}
+
+// Botões ----------------------------------------------------------------------
+.ant-btn {
+  border-radius: var(--rs-radius-md);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.ant-btn-primary {
+  color: var(--rs-text-on-primary);
+  background: var(--rs-color-primary);
+  border-color: var(--rs-color-primary);
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    color: var(--rs-text-on-primary);
+    background: var(--rs-color-primary-hover);
+    border-color: var(--rs-color-primary-hover);
+  }
+}
+
+// Botão padrão do NG-ZORRO não recebe classe própria: é o .ant-btn "puro".
+.ant-btn:not(.ant-btn-primary):not(.ant-btn-text):not(.ant-btn-link):not(.ant-btn-dangerous):not(.rs-btn-accent),
+.ant-btn-default,
+.ant-btn-dashed {
+  color: var(--rs-text);
+  background: var(--rs-surface);
+  border-color: var(--rs-border-strong);
+
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    color: var(--rs-color-primary-text);
+    background: var(--rs-surface);
+    border-color: var(--rs-color-primary);
+  }
+}
+
+.ant-btn-text {
+  color: var(--rs-text-muted);
+
+  &:not([disabled]):hover {
+    color: var(--rs-text);
+    background: var(--rs-surface-hover);
+  }
+}
+
+
+
+// Botão de destaque (laranja): ação que move o rollout
+.ant-btn.rs-btn-accent {
+  color: var(--rs-text-on-accent);
+  background: var(--rs-color-accent);
+  border-color: var(--rs-color-accent);
+
+  &:not([disabled]):hover {
+    color: var(--rs-text-on-accent);
+    background: var(--rs-color-accent-hover);
+    border-color: var(--rs-color-accent-hover);
+  }
+}
+
+// Campos ---------------------------------------------------------------------
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select:not(.ant-select-customize-input) .ant-select-selector,
+.ant-picker,
+.ant-input-number {
+  color: var(--rs-text);
+  background: var(--rs-surface);
+  border-color: var(--rs-border-strong);
+  border-radius: var(--rs-radius-md);
+}
+
+.ant-input::placeholder,
+.ant-select-selection-placeholder {
+  color: var(--rs-text-subtle);
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+  background: transparent;
+}
+
+.ant-select-arrow,
+.ant-input-prefix,
+.ant-input-suffix,
+.ant-picker-suffix {
+  color: var(--rs-text-subtle);
+}
+
+.ant-select-multiple .ant-select-selection-item {
+  color: var(--rs-text);
+  background: var(--rs-color-primary-soft);
+  border-color: transparent;
+  border-radius: var(--rs-radius-sm);
+}
+
+// Dropdowns, menus flutuantes, popovers, tooltips ------------------------------
+.ant-select-dropdown,
+.ant-dropdown-menu,
+.ant-popover-inner,
+.ant-picker-dropdown .ant-picker-panel-container {
+  background: var(--rs-surface-elevated);
+  border: 1px solid var(--rs-border);
+  border-radius: var(--rs-radius-md);
+  box-shadow: var(--rs-shadow-2);
+}
+
+.ant-select-item,
+.ant-dropdown-menu-item {
+  color: var(--rs-text);
+}
+
+.ant-select-item-option-active:not(.ant-select-item-option-disabled),
+.ant-dropdown-menu-item:hover {
+  background: var(--rs-surface-hover);
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  color: var(--rs-color-primary-text);
+  background: var(--rs-color-primary-soft);
+}
+
+.ant-popover-inner-content,
+.ant-popover-title {
+  color: var(--rs-text);
+}
+
+.ant-popover-arrow-content,
+.ant-popover-arrow-content::before {
+  background: var(--rs-surface-elevated);
+}
+
+// Cards -------------------------------------------------------------------------
+.ant-card {
+  color: var(--rs-text);
+  background: var(--rs-surface);
+  border-color: var(--rs-border);
+  border-radius: var(--rs-radius-lg);
+}
+
+.ant-card-head {
+  color: var(--rs-text);
+  border-color: var(--rs-border);
+}
+
+// Tabelas -----------------------------------------------------------------------
+.ant-table {
+  color: var(--rs-text);
+  background: var(--rs-surface);
+  border-radius: var(--rs-radius-lg);
+}
+
+.ant-table-thead > tr > th {
+  color: var(--rs-text-muted);
+  background: var(--rs-surface-sunken);
+  border-color: var(--rs-border);
+  font-size: var(--rs-font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  &::before {
+    background-color: var(--rs-border) !important;
+  }
+}
+
+.ant-table-tbody > tr > td {
+  border-color: var(--rs-border);
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td,
+.ant-table-tbody > tr > td.ant-table-cell-row-hover {
+  background: var(--rs-surface-hover);
+}
+
+.ant-table-tbody > tr.ant-table-row-selected > td {
+  background: var(--rs-color-primary-soft);
+}
+
+.ant-table-tbody > tr.ant-table-placeholder:hover > td {
+  background: var(--rs-surface);
+}
+
+.ant-table-column-sorter {
+  color: var(--rs-text-subtle);
+}
+
+// Paginação
+.ant-pagination,
+.ant-pagination-item a,
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  color: var(--rs-text);
+}
+
+.ant-pagination-item,
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  background: var(--rs-surface);
+  border-color: var(--rs-border);
+  border-radius: var(--rs-radius-sm);
+}
+
+.ant-pagination-item-active {
+  border-color: var(--rs-color-primary);
+
+  a {
+    color: var(--rs-color-primary-text);
+  }
+}
+
+// Collapse (acordeões) ------------------------------------------------------------
+.ant-collapse {
+  color: var(--rs-text);
+  background: var(--rs-surface);
+  border-color: var(--rs-border);
+  border-radius: var(--rs-radius-lg);
+
+  > .ant-collapse-item {
+    border-color: var(--rs-border);
+
+    > .ant-collapse-header {
+      color: var(--rs-text);
+      font-weight: 600;
+    }
+  }
+
+  .ant-collapse-content {
+    color: var(--rs-text);
+    background: var(--rs-surface);
+    border-color: var(--rs-border);
+  }
+}
+
+// Checkbox, radio, segmented, switch -------------------------------------------------
+.ant-checkbox-inner {
+  background: var(--rs-surface);
+  border-color: var(--rs-border-strong);
+}
+
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-checkbox-indeterminate .ant-checkbox-inner {
+  background: var(--rs-color-primary);
+  border-color: var(--rs-color-primary);
+}
+
+.ant-segmented {
+  color: var(--rs-text-muted);
+  background: var(--rs-surface-sunken);
+  border-radius: var(--rs-radius-md);
+}
+
+.ant-segmented-item-selected {
+  color: var(--rs-text);
+  background: var(--rs-surface-elevated);
+  border-radius: var(--rs-radius-sm);
+}
+
+.ant-segmented-item:hover:not(.ant-segmented-item-selected) {
+  color: var(--rs-text);
+}
+
+// Descrições, timeline, divider, progress, empty, statistic ---------------------------
+.ant-descriptions-title,
+.ant-descriptions-item-content {
+  color: var(--rs-text);
+}
+
+.ant-descriptions-item-label {
+  color: var(--rs-text-muted);
+}
+
+.ant-descriptions-bordered {
+  .ant-descriptions-view,
+  .ant-descriptions-row,
+  .ant-descriptions-item-label,
+  .ant-descriptions-item-content {
+    border-color: var(--rs-border);
+  }
+
+  .ant-descriptions-item-label {
+    background: var(--rs-surface-sunken);
+  }
+}
+
+.ant-timeline-item-content,
+.ant-statistic-content {
+  color: var(--rs-text);
+}
+
+.ant-timeline-item-tail {
+  border-color: var(--rs-border);
+}
+
+.ant-statistic-title,
+.ant-empty-description {
+  color: var(--rs-text-muted);
+}
+
+.ant-divider {
+  border-color: var(--rs-border);
+}
+
+.ant-progress-text {
+  color: var(--rs-text-muted);
+}
+
+.ant-progress-inner {
+  background: var(--rs-surface-sunken);
+}
+
+// Modal e drawer ---------------------------------------------------------------------
+.ant-modal-content,
+.ant-modal-header,
+.ant-drawer-content,
+.ant-drawer-header {
+  color: var(--rs-text);
+  background: var(--rs-surface-elevated);
+  border-color: var(--rs-border);
+}
+
+.ant-modal-content {
+  border-radius: var(--rs-radius-lg);
+}
+
+.ant-modal-title,
+.ant-drawer-title,
+.ant-modal-close {
+  color: var(--rs-text);
+}
+
+.ant-modal-footer {
+  border-color: var(--rs-border);
+}
+
+// Alert, breadcrumb, tooltip ---------------------------------------------------------
+.ant-alert {
+  border-radius: var(--rs-radius-md);
+}
+
+.ant-alert-info {
+  background: var(--rs-color-primary-soft);
+  border-color: transparent;
+}
+
+.ant-alert-warning {
+  background: var(--rs-color-accent-soft);
+  border-color: transparent;
+}
+
+.ant-alert-message,
+.ant-alert-description {
+  color: var(--rs-text);
+}
+
+.ant-breadcrumb,
+.ant-breadcrumb a,
+.ant-breadcrumb-separator {
+  color: var(--rs-text-muted);
+}
+
+.ant-breadcrumb > nz-breadcrumb-item:last-child,
+.ant-breadcrumb li:last-child {
+  color: var(--rs-text);
+}
+
+.ant-tooltip-inner {
+  border-radius: var(--rs-radius-sm);
+}
+
+// Menu lateral (inline) ---------------------------------------------------------------
+.ant-menu {
+  color: var(--rs-text-muted);
+  background: transparent;
+  border-right: 0 !important;
+}
+
+.ant-menu-item,
+.ant-menu-submenu-title {
+  border-radius: var(--rs-radius-md);
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover,
+.ant-menu-item-active {
+  color: var(--rs-text) !important;
+  background: var(--rs-surface-hover);
+}
+
+.ant-menu-inline .ant-menu-item::after {
+  border-right-color: var(--rs-color-accent);
+}
+
+.ant-menu-item-selected {
+  color: var(--rs-color-primary-text) !important;
+  background: var(--rs-color-primary-soft) !important;
+  font-weight: 600;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  background: transparent;
+}
+
+.ant-menu-item-group-title {
+  color: var(--rs-text-subtle);
+  font-size: var(--rs-font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// Mensagens / notificações ------------------------------------------------------------
+.ant-message-notice-content,
+.ant-notification-notice {
+  color: var(--rs-text);
+  background: var(--rs-surface-elevated);
+  border: 1px solid var(--rs-border);
+  border-radius: var(--rs-radius-md);
+}
+
+.ant-notification-notice-message,
+.ant-notification-notice-close {
+  color: var(--rs-text);
+}
+
+// Tags --------------------------------------------------------------------------
+.ant-tag {
+  color: var(--rs-text-muted);
+  background: var(--rs-surface-sunken);
+  border-color: var(--rs-border);
+  border-radius: var(--rs-radius-sm);
+}
+
+// Botão perigoso (cancelar, rollback, stepback) ------------------------------------
+.ant-btn-dangerous:not(.ant-btn-primary) {
+  color: var(--rs-color-danger);
+  background: var(--rs-surface);
+  border-color: var(--rs-color-danger);
+
+  &:not([disabled]):hover {
+    color: var(--rs-color-danger);
+    background: var(--rs-color-rose-soft);
+    border-color: var(--rs-color-danger);
+  }
+}
+
+// Desabilitado por último, com especificidade maior que as variações acima.
+.ant-btn.ant-btn[disabled],
+.ant-btn.ant-btn[disabled]:hover,
+.ant-btn.ant-btn[disabled]:focus {
+  color: var(--rs-text-subtle);
+  background: var(--rs-surface-sunken);
+  border-color: var(--rs-border);
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.ant-timeline-item-head {
+  background: transparent;
+}

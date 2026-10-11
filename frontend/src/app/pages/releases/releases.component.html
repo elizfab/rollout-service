@@ -1,0 +1,238 @@
+<div class="rs-print-header">
+  <h1>Releases</h1>
+</div>
+
+<rs-page-header
+  eyebrow="Rollouts"
+  [title]="meta.title"
+  [description]="meta.description"
+  [endpoints]="meta.endpoints ?? []"
+>
+  <button nz-button (click)="reload()" [nzLoading]="loading()" data-testid="reload">
+    <span nz-icon nzType="reload"></span> Recarregar
+  </button>
+  <button nz-button (click)="exportCsv()"><span nz-icon nzType="download"></span> CSV</button>
+  <button nz-button (click)="exportJson()"><span nz-icon nzType="code"></span> JSON</button>
+  @if (data.isMock) {
+    <button nz-button (click)="fileInput.click()"><span nz-icon nzType="upload"></span> Importar mock</button>
+    <input #fileInput type="file" accept="application/json,.json" hidden (change)="importJson(fileInput)" />
+    <button nz-button nzType="text" (click)="resetMock()" data-testid="reset-mock">Restaurar mock</button>
+  }
+  <button nz-button (click)="print()"><span nz-icon nzType="printer"></span> Imprimir</button>
+</rs-page-header>
+
+<!-- Resumo por status: clicar filtra -->
+<section class="rs-summary rs-no-print" aria-label="Resumo por status">
+  @for (item of statusCounts(); track item.status) {
+    <button
+      type="button"
+      class="rs-summary__card"
+      [class.rs-summary__card--active]="filters().statuses.includes(item.status)"
+      [style.--dot]="'var(--rs-status-' + statusMeta[item.status].token + '-dot)'"
+      [attr.aria-pressed]="filters().statuses.includes(item.status)"
+      [attr.data-testid]="'summary-' + item.status"
+      (click)="toggleStatusFilter(item.status)"
+    >
+      <span class="rs-summary__count">{{ item.count }}</span>
+      <span class="rs-summary__label"><span class="rs-summary__dot"></span>{{ statusMeta[item.status].label }}</span>
+    </button>
+  }
+</section>
+
+<!-- Filtros e visão -->
+<section class="rs-toolbar rs-no-print" aria-label="Filtros">
+  <nz-input-group [nzPrefix]="searchIcon" class="rs-toolbar__search">
+    <input
+      nz-input
+      type="search"
+      placeholder="Buscar por ID, GMUD, RACF, aplicação ou pacote"
+      aria-label="Buscar releases"
+      data-testid="search"
+      [ngModel]="filters().search"
+      (ngModelChange)="onSearch($event)"
+    />
+  </nz-input-group>
+  <ng-template #searchIcon><span nz-icon nzType="search"></span></ng-template>
+
+  <nz-select
+    class="rs-toolbar__status"
+    nzMode="multiple"
+    nzPlaceHolder="Filtrar por status"
+    nzAllowClear
+    [nzMaxTagCount]="2"
+    [ngModel]="filters().statuses"
+    (ngModelChange)="onStatusesChange($event)"
+    aria-label="Filtrar por status"
+    data-testid="status-filter"
+  >
+    @for (opt of statusOptions; track opt.value) {
+      <nz-option [nzValue]="opt.value" [nzLabel]="opt.label" />
+    }
+  </nz-select>
+
+  <nz-segmented
+    [nzOptions]="viewOptions"
+    [ngModel]="view()"
+    (ngModelChange)="onViewChange($event)"
+    aria-label="Modo de visualização"
+    data-testid="view-toggle"
+  />
+</section>
+
+<!-- Barra de ações em lote (Cenário 1) -->
+@if (selectedIds().length) {
+  <section class="rs-batch rs-no-print" role="region" aria-label="Ações em lote" data-testid="batch-bar">
+    <strong>{{ selectedIds().length }} selecionada{{ selectedIds().length > 1 ? 's' : '' }}</strong>
+    <span class="rs-batch__hint">
+      @if (batchActions().length) {
+        Ações válidas para todas as selecionadas:
+      } @else {
+        Nenhuma ação em lote vale para essa combinação de status.
+      }
+    </span>
+    <div class="rs-batch__actions">
+      @for (a of batchActions(); track a) {
+        <button
+          nz-button
+          [class.rs-btn-accent]="a === 'resume'"
+          [nzDanger]="actionMeta[a].destructive"
+          [attr.data-testid]="'batch-' + a"
+          (click)="pendingAction.set(a)"
+        >
+          <span nz-icon [nzType]="actionMeta[a].icon"></span> {{ actionMeta[a].label }}
+        </button>
+      }
+      <button nz-button nzType="text" (click)="clearSelection()">Limpar seleção</button>
+    </div>
+  </section>
+}
+
+<!-- Conteúdo -->
+@if (loading() && !releases().length) {
+  <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 8 }" />
+} @else if (!releases().length) {
+  <nz-empty nzNotFoundContent="Nenhuma release encontrada com esses filtros." data-testid="empty" />
+} @else if (view() === 'trains') {
+  <nz-collapse nzExpandIconPosition="end" class="rs-trains" data-testid="trains-view">
+    @for (group of groups(); track group.key; let first = $first) {
+      <nz-collapse-panel [nzHeader]="panelHeader" [nzActive]="first" [attr.data-testid]="'train-' + group.key">
+        <ng-template #panelHeader>
+          <div class="rs-train-header">
+            <div class="rs-train-header__title">
+              <span nz-icon [nzType]="group.releaseTrainId ? 'node-index' : 'rocket'" class="rs-train-header__icon"></span>
+              <strong>{{ group.name }}</strong>
+              <span class="rs-text-muted rs-mono">{{ group.scheduledAt | date: 'dd/MM HH:mm' }}</span>
+            </div>
+            <div class="rs-train-header__counts">
+              <nz-tag>{{ group.releases.length }} releases</nz-tag>
+              @for (s of statusOptions; track s.value) {
+                @if (group.counts[s.value]) {
+                  <span
+                    class="rs-count-dot"
+                    [style.--dot]="'var(--rs-status-' + statusMeta[s.value].token + '-dot)'"
+                    nz-tooltip
+                    [nzTooltipTitle]="s.label"
+                  >
+                    {{ group.counts[s.value] }}
+                  </span>
+                }
+              }
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-container
+          [ngTemplateOutlet]="releaseTable"
+          [ngTemplateOutletContext]="{ $implicit: group.releases, showTrain: false }"
+        />
+      </nz-collapse-panel>
+    }
+  </nz-collapse>
+} @else {
+  <div data-testid="table-view">
+    <ng-container [ngTemplateOutlet]="releaseTable" [ngTemplateOutletContext]="{ $implicit: releases(), showTrain: true }" />
+  </div>
+}
+
+<!-- Tabela reutilizada nas duas visões -->
+<ng-template #releaseTable let-rows let-showTrain="showTrain">
+  <nz-table
+    #table
+    [nzData]="rows"
+    [nzLoading]="loading()"
+    [nzFrontPagination]="false"
+    [nzShowPagination]="showTrain"
+    [nzTotal]="pagination().total"
+    [nzPageIndex]="pagination().page"
+    [nzPageSize]="pagination().limit"
+    [nzShowSizeChanger]="true"
+    [nzPageSizeOptions]="[10, 20, 50, 100]"
+    (nzQueryParams)="onTableQuery($event)"
+    [nzScroll]="{ x: '960px' }"
+    nzSize="middle"
+    class="rs-release-table"
+  >
+    <thead>
+      <tr>
+        <th
+          nzWidth="48px"
+          [nzChecked]="allChecked(rows)"
+          [nzIndeterminate]="someChecked(rows)"
+          (nzCheckedChange)="toggleMany(rows, $event)"
+          aria-label="Selecionar todas"
+        ></th>
+        <th>Release</th>
+        @if (showTrain) {
+          <th>Release train</th>
+        }
+        <th>Aplicação</th>
+        <th>GMUD</th>
+        <th>Audiências</th>
+        <th nzWidth="150px">Progresso</th>
+        <th>Status</th>
+        <th>Agendado</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of rows; track r.id) {
+        <tr [attr.data-testid]="'row-' + r.id">
+          <td
+            [nzChecked]="isSelected(r.id)"
+            (nzCheckedChange)="toggleOne(r.id, $event)"
+            [attr.aria-label]="'Selecionar ' + r.id"
+          ></td>
+          <td>
+            <a [routerLink]="['/releases', r.id]" class="rs-mono" [attr.data-testid]="'link-' + r.id">{{ r.id }}</a>
+            <div class="rs-text-muted rs-cell-sub">{{ r.packageStory }}</div>
+          </td>
+          @if (showTrain) {
+            <td>{{ r.releaseTrainName ?? 'Individual' }}</td>
+          }
+          <td>{{ r.applicationName }}</td>
+          <td class="rs-mono">{{ r.gmud }}</td>
+          <td>
+            @for (a of r.audiences.slice(0, 2); track a) {
+              <nz-tag class="rs-audience">{{ a }}</nz-tag>
+            }
+            @if (r.audiences.length > 2) {
+              <nz-tag nz-tooltip [nzTooltipTitle]="r.audiences.slice(2).join(', ')">+{{ r.audiences.length - 2 }}</nz-tag>
+            }
+          </td>
+          <td>
+            <nz-progress [nzPercent]="r.progress" nzSize="small" [nzStrokeColor]="{ '0%': '#6474E5', '100%': '#FF8552' }" />
+          </td>
+          <td><rs-status-tag [status]="r.status" /></td>
+          <td class="rs-mono">{{ r.scheduledAt | date: 'dd/MM/yy HH:mm' }}</td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+</ng-template>
+
+<rs-release-action-modal
+  [action]="pendingAction()"
+  [count]="selectedIds().length"
+  [loading]="actionPending()"
+  (confirmed)="confirmBatch($event)"
+  (cancelled)="pendingAction.set(null)"
+/>

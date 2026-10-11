@@ -1,0 +1,130 @@
+<a routerLink="/releases" class="rs-back rs-no-print" data-testid="back">
+  <span nz-icon nzType="arrow-left"></span> Voltar para releases
+</a>
+
+@if (loading() && !release()) {
+  <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 10 }" />
+} @else if (!release()) {
+  <nz-result nzStatus="404" nzTitle="Release não encontrada" [nzSubTitle]="error()?.message ?? ''">
+    <div nz-result-extra>
+      <a nz-button nzType="primary" routerLink="/releases">Ver todas as releases</a>
+    </div>
+  </nz-result>
+} @else {
+  @let r = release()!;
+
+  <rs-page-header
+    eyebrow="Release"
+    [title]="r.id"
+    [description]="r.packageStory"
+    [endpoints]="['GET /v1/releases/' + r.id, 'PUT /v1/releases/' + r.id]"
+  >
+    @for (a of actions; track a) {
+      <span nz-tooltip [nzTooltipTitle]="disabledReason(a)">
+        <button
+          nz-button
+          [class.rs-btn-accent]="a === 'resume'"
+          [nzDanger]="actionMeta[a].destructive && isAllowed(a)"
+          [disabled]="!isAllowed(a) || actionPending()"
+          [attr.data-testid]="'action-' + a"
+          (click)="pendingAction.set(a)"
+        >
+          <span nz-icon [nzType]="actionMeta[a].icon"></span> {{ actionMeta[a].label }}
+        </button>
+      </span>
+    }
+  </rs-page-header>
+
+  <section class="rs-detail-grid">
+    <article class="rs-card rs-card--status">
+      <span class="rs-eyebrow">Status atual</span>
+      <rs-status-tag [status]="r.status" data-testid="detail-status" />
+      <p class="rs-text-muted">{{ statusMeta[r.status].description }}</p>
+      <nz-progress
+        [nzPercent]="r.progress"
+        [nzStrokeColor]="{ '0%': '#6474E5', '60%': '#9A7FE6', '100%': '#FF8552' }"
+        nzStatus="active"
+      />
+      @if (terminal()) {
+        <p class="rs-terminal">Estado terminal: nenhuma ação é permitida a partir daqui.</p>
+      }
+    </article>
+
+    <article class="rs-card">
+      <nz-descriptions nzBordered [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }" nzSize="small">
+        <nz-descriptions-item nzTitle="Aplicação">{{ r.applicationName }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Pacote"><span class="rs-mono">{{ r.packageId }}</span></nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Release train">{{ r.releaseTrainName ?? 'Individual' }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="GMUD"><span class="rs-mono">{{ r.gmud }}</span></nz-descriptions-item>
+        <nz-descriptions-item nzTitle="RACF"><span class="rs-mono">{{ r.racf }}</span></nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Agendado em">{{ r.scheduledAt | date: 'dd/MM/yyyy HH:mm' }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Audiências">
+          @for (a of r.audiences; track a) {
+            <nz-tag class="rs-mono">{{ a }}</nz-tag>
+          }
+        </nz-descriptions-item>
+      </nz-descriptions>
+    </article>
+  </section>
+
+  <nz-collapse class="rs-detail-collapse" nzExpandIconPosition="end">
+    <nz-collapse-panel nzHeader="Histórico de status" [nzActive]="true" data-testid="history-panel">
+      <nz-timeline>
+        @for (h of history(); track h.createdAt + h.status) {
+          <nz-timeline-item [nzDot]="dot">
+            <ng-template #dot>
+              <span class="rs-timeline-dot" [style.--dot]="'var(--rs-status-' + statusMeta[h.status].token + '-dot)'"></span>
+            </ng-template>
+            <div class="rs-history">
+              <rs-status-tag [status]="h.status" />
+              <span class="rs-text-muted rs-mono">{{ h.createdAt | date: 'dd/MM/yyyy HH:mm' }} · {{ h.changedBy }}</span>
+            </div>
+            <p>{{ h.observation }}</p>
+          </nz-timeline-item>
+        }
+      </nz-timeline>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel nzHeader="Regras de ação para este status (Cenário 2)">
+      <table class="rs-rules">
+        <thead>
+          <tr>
+            <th>Ação</th>
+            <th>Permitida?</th>
+            <th>Status resultante</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (a of actions; track a) {
+            <tr>
+              <td>{{ actionMeta[a].label }}</td>
+              <td>
+                @if (isAllowed(a)) {
+                  <span class="rs-yes"><span nz-icon nzType="check-circle"></span> Sim</span>
+                } @else {
+                  <span class="rs-no"><span nz-icon nzType="close-circle"></span> Não</span>
+                }
+              </td>
+              <td><rs-status-tag [status]="statusAfter[a]" /></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <p class="rs-text-muted rs-rules__source">
+        Fonte: <code>docs/proposta/regras-permissionamentos/regras-acoes.md</code> ·
+        código: <code>src/app/models/release-action.rules.ts</code>
+      </p>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel nzHeader="JSON da release">
+      <pre data-testid="release-json">{{ r | json }}</pre>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <rs-release-action-modal
+    [action]="pendingAction()"
+    [loading]="actionPending()"
+    (confirmed)="confirm($event)"
+    (cancelled)="pendingAction.set(null)"
+  />
+}
